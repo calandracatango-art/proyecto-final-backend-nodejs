@@ -17,6 +17,7 @@ export const getAllProducts = async (req, res) => {
 export const getProductById = async (req, res) => {
   try {
     const { id } = req.params;
+    console.log('GET /api/products/:id -> id:', JSON.stringify(id));
     const product = await getProductByIdService(id);
 
     if (!product) {
