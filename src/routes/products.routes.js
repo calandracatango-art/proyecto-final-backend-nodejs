@@ -1,0 +1,20 @@
+import { Router } from 'express';
+import {
+  getAllProducts,
+  getProductById,
+  createProduct,
+  deleteProduct
+} from '../controllers/products.controller.js';
+import { verifyToken } from '../middlewares/auth.middleware.js';
+
+const router = Router();
+
+// Rutas públicas
+router.get('/', getAllProducts);
+router.get('/:id', getProductById);
+
+// Rutas protegidas con JWT
+router.post('/create', verifyToken, createProduct);
+router.delete('/:id', verifyToken, deleteProduct);
+
+export default router;
